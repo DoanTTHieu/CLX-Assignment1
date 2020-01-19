@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Number Guessing Game</title>
+        <link rel="stylesheet" href="NumberGuessing.css">
+    </head>
+    <body> 
+        <h1>Number Guessing Game</h1>
+        <div id="message"></div>
+        <input type="text" id="yourInputId" value="">
+        <button id="guessButton" onclick="checkNumber()">Guess</button>
+        <p>Your past guesses: </p>
+        <p id="pastGuess" value = " "></p>
+        <script >
+            var i;
+            var result = "" ;
+            var index=0;
+            var array=[];
+            var count=10;
+            var rdNum = Math.floor(Math.random() * 100) + 1;
+
+            //press ENTER to check
+            document.addEventListener("keypress", checkKeyDown, false);
+            function checkKeyDown(e)
+            {
+                if(e.keyCode==13)
+                {
+                    checkNumber();
+                }
+            }
+            function checkNumber()
+            {
+                let userGuess = parseInt(document.getElementById('yourInputId').value);
+                //lay gia tri random
+                console.log(rdNum);
+                console.log(userGuess);
+                if(count>=1)
+                {
+                    count--;
+                    array.unshift(userGuess.toString());
+                    if(userGuess==rdNum)
+                    {
+                        message.innerHTML="Congratulations!! You guessed correctly.";
+                        message.style.backgroundColor = "green";
+                    }
+                    else if (userGuess>rdNum)
+                    {
+                        message.innerHTML="Sorry your guess is too high, guess lower. You have "+count+" guesses left.";
+                        message.style.backgroundColor = "red";
+                    }
+                    else
+                    { 
+                        message.innerHTML="Sorry your guess is too low, guess higher. You have "+count+" guesses left.";
+                        message.style.backgroundColor = "red";
+                    }
+                    console.log(array);
+                    result =array[0]+" "+document.getElementById("pastGuess").innerHTML;
+                    console.log(result);
+                    document.getElementById("pastGuess").innerHTML =result;
+                    index++;
+                }
+                else
+                {
+                    message.innerHTML="Reload this page to play!"
+                }
+                document.getElementById('yourInputId').value="";//reset input box
+            }
+        </script>
+    </body>
+</html>
