@@ -1,36 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, FlatList } from 'react-native';
 import CategoryListItem from'./components/CategoryListItem';
+console.log(React.version);
 
-export default function App() {
-  return (
-    <View>
-      <ScrollView style= {{paddingLeft: 2, paddingRight: 2}}>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-        <CategoryListItem/>
-      </ScrollView>
-    </View>
-  );
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    categories: [
+      { id: 1, name: 'Dụng cụ nhà bếp'},
+      { id: 2, name: 'Dụng cụ làm vườn'},
+      { id: 3, name: 'Sofa'}
+    ]
+    };
+  }
+
+  render(){
+    const {categories} = this.state;
+    return (
+      <FlatList data = {categories}
+        renderItem = {({item}) => <CategoryListItem category = {item}/>}
+        keyExtractor = {item => '${item.id}'} 
+        contentContainerStyle = {{paddingLeft: 16, paddingRight: 16}}
+      />
+    );
+  }
 }
-
-// export default class App extends React.Component() {
-//   render(){
-//     return (
-//       <View style={styles.container}>
-//         <CategoryListItem/>
-//         <CategoryListItem/>
-//         <CategoryListItem/>
-//       </View>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   container: {
@@ -40,5 +35,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 16,
     paddingRight: 16
-  },
+  }
 });
