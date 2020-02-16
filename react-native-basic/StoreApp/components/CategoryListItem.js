@@ -1,14 +1,18 @@
 import React from 'react';
-import{ Image, Text, View, StyleSheet } from 'react-native';
+import{ Image, Text, View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import HomeICon from '../assets/home-icon.png'
 
 export default function CategoryListItem(props){
     const {category} = props;
     return (
+        <TouchableOpacity activeOpacity = {0.5} onPress ={() => {
+            Alert.alert('Click!');
+        }}>
         <View style = {styles.container}>
             <Text style = {styles.title}>{category.name}</Text>
             <Image style = {styles.categoryImage}source={HomeICon}/>
         </View>
+        </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({

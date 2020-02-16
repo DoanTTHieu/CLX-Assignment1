@@ -20,7 +20,7 @@ export default class App extends React.Component {
     return (
       <FlatList data = {categories}
         renderItem = {({item}) => <CategoryListItem category = {item}/>}
-        keyExtractor = {item => '${item.id}'} 
+        keyExtractor = {item => item.id.toString()} 
         contentContainerStyle = {{paddingLeft: 16, paddingRight: 16}}
       />
     );
