@@ -24,7 +24,9 @@ export default class Categories extends React.Component {
     return (
       <FlatList data = {categories}
         renderItem = {({item}) => 
-          <CategoryListItem category = {item} onPress = {() =>navigation.navigate('Category')}/>
+          <CategoryListItem category = {item} onPress = {() =>navigation.navigate('Category',{
+            categoryName: item.name
+          })}/>
         }
         keyExtractor = {item => item.id.toString()} 
         contentContainerStyle = {styles.container}
