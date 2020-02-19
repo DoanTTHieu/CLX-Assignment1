@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
         padding:16,
         borderRadius: 4,
         backgroundColor:'#FFF',
-        //macos
+        //web
         shadowColor: '#000',
         shadowOpacity: 0.3,
         shadowRadius:10,
         shadowOffset: {width: 0, height: 0},
-        //elevation: 10,//tren win thi can sai
+        //elevation: 10,//android
         marginBottom: 16
     },
     categoryImage:{
