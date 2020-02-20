@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import AppNavigator from './AppNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import axios from 'axios';
 
-//const AppContainer = createAppContainer();
-
+axios.defaults.baseURL = 'http://localhost:3000';
 export default class App extends React.Component {
   render(){
     return (

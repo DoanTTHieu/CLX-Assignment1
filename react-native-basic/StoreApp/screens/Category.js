@@ -2,38 +2,31 @@ import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import ProductListItem from '../components/ProductListItem';
 import { FlatList } from 'react-native-gesture-handler';
+import Axios from 'axios';
 
 export default class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [
-        {
-        id: 1,
-        images: [
-          {
-            url: 
-            'http://res.cloudinary.com/demo/image/upload/sample.jpg',
-          }
-        ],
-        name: 'Anh1',
-        price: '494942'
-      },
-      {
-        id: 2,
-        images: [
-          {
-            url: 
-            'http://res.cloudinary.com/demo/image/upload/sample.jpg',
-          }
-        ],
-        name: 'Anh2',
-        price:'7777'
-      }
-    ]
+      products: []
     };
   }
   
+  async componentDidMount(){
+    const {navigation} = this.props;
+    const id = navigation.getParam('id');
+    console.log({id});
+    try{
+      const {data: products} = await Axios.get('/products?category=${id}');
+      this.setState({
+        products
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   render(){
     return (
       <FlatList 

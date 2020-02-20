@@ -1,0 +1,54 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Dung cu truot tuyet"
+        },
+        {
+            "id": 2,
+            "name": "Quan ao truot tuyet"
+        },
+        {
+            "id": 3,
+            "name": "Kinh mu"
+        }
+    ],
+    "products": [
+        {
+        "id": 1,
+        "images": [
+          {
+            "url": 
+            "http://res.cloudinary.com/demo/image/upload/sample.jpg"
+          }
+        ],
+        "name": "Anh1",
+        "price": "494942",
+        "category": 1
+      },
+      {
+        "id": 2,
+        "images": [
+          {
+            "url": 
+            "http://res.cloudinary.com/demo/image/upload/sample.jpg"
+          }
+        ],
+        "name": "Anh2",
+        "price":"7777",
+        "category": 2
+      },
+      {
+        "id": 3,
+        "images": [
+          {
+            "url": 
+            "http://res.cloudinary.com/demo/image/upload/sample.jpg"
+          }
+        ],
+        "name": "Anh3",
+        "price":"1212122",
+        "category": 3      
+      }
+    ]
+  }
