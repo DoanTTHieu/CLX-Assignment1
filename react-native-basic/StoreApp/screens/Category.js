@@ -15,7 +15,7 @@ export default class Category extends React.Component {
   async componentDidMount(){
     const {navigation} = this.props;
     const id = navigation.getParam('id');
-    console.log({id});
+    //console.log({id});
     try{
       const {data: products} = await Axios.get('/products?category=${id}');
       this.setState({
