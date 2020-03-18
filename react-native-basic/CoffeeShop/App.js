@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import {
   View, StatusBar, SafeAreaView, StyleSheet, TouchableOpacity,
-  Dimensions, Text, Image, TextInput
+  Dimensions, Image, TextInput
 } from 'react-native';
 import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
 
 import LoginScreen from './component/Auth/SignIn';
 import SettingScreen from './component/Main/Setting';
 import OrdersScreen from './component/Main/Orders';
-import ItemsScreen from './component/Main/Items';
+import ItemsScreen from './component/Main/Items/Items';
 //import Menu from './screen/Menu';
 import OdersHistory from './component/Menu/OdersHistory';
 //import Header from './screen/Header';
 import menu from './assets/menu.png';
-
 
 const { height } = Dimensions.get('window');
 
@@ -46,15 +46,16 @@ const SettingStack = createStackNavigator();
 function SettingStackScreen() {
   return (
     <SettingStack.Navigator>
-      <SettingStack.Screen name="Setting" component={SettingScreen} options={{ headerShown: false }} />
+      <SettingStack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{ headerShown: false }}
+      />
     </SettingStack.Navigator>
   );
 }
 
 const Tab = createBottomTabNavigator();
-/* <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
-<Text>Open MENU</Text>
-</TouchableOpacity>     { navigation }*/
 
 function TabNavigator({ navigation }) {
   return (
@@ -67,19 +68,41 @@ function TabNavigator({ navigation }) {
               style={{ width: 35, height: 35 }}
             />
           </TouchableOpacity>
-          <TextInput 
-            style={styles.textInput} 
+          <TextInput
+            style={styles.textInput}
             placeholder='SEARCH'
           />
         </View>
 
-        <Tab.Navigator >
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Setting') {
+                iconName = focused ? 'ios-settings' : 'ios-settings';
+              } else if (route.name === 'Items') {
+                iconName = focused ? 'ios-cafe' : 'ios-cafe';
+              } else if (route.name === 'Oders') {
+                iconName = focused ? 'ios-list-box' : 'ios-list';
+              }
+
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+          })}
+          //style={{ justifyContent: 'center' }}
+          tabBarOptions={{
+          activeTintColor: '#f7c744',
+          inactiveTintColor: '#203546',
+        }}
+
+        >
           <Tab.Screen name="Items" component={ItemsStackScreen} />
-          <Tab.Screen name="Oders" component={OdersStackScreen} />
-          <Tab.Screen name="Setting" component={SettingStackScreen} />
+        <Tab.Screen name="Oders" component={OdersStackScreen} />
+        <Tab.Screen name="Setting" component={SettingStackScreen} />
         </Tab.Navigator>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 
@@ -115,15 +138,15 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     height: height / 15,
-    backgroundColor: '#f78ae0', 
+    backgroundColor: '#f7c744',
     flexDirection: 'row',
     padding: 10,
     justifyContent: 'space-around'
   },
   textInput: {
-    height: height / 25, 
-    width: 340, 
-    backgroundColor: '#FFF', 
+    height: height / 25,
+    width: 340,
+    backgroundColor: '#FFF',
     paddingLeft: 10
   }
 });
