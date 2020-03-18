@@ -46,7 +46,7 @@ export default class LoginScreen extends Component {
                                 <Image 
                                     style={styles.logo}
                                     // eslint-disable-next-line global-require
-                                    source={require('../../assets/menu.png')}
+                                    source={require('../../assets/Others/menu.png')}
                                 />
                                 <Text style={styles.title}>Account Information</Text>
                             </View>

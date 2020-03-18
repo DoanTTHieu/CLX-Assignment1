@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
 import capuchino from '../../../assets/Items/capuchino.jpg';
@@ -9,12 +9,9 @@ import bacXiu from '../../../assets/Items/bacXiu.jpg';
 
 export default class SpecialItems extends Component {
   render() {
-    const { wrapper, textStyle, imageStyle } = styles;
+    const { wrapper, imageStyle } = styles;
     return (
       <View style={wrapper}>
-        {/* <View style={{ flex: 1, justifyContent: 'center' }} >
-          <Text style={textStyle}>SPECIAL DRINKS</Text>
-        </View> */}
         <SwiperFlatList
           autoplay
           autoplayDelay={3}
@@ -45,10 +42,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.8,
         padding: 10,
-    },
-    textStyle: {
-        fontSize: 20,
-        color: '#AFAEAF',
     },
     imageStyle: {
         width: width - 40,
