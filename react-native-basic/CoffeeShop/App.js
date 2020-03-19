@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 //import { createStackNavigator } from '@react-navigation/stack';
-//import LoginScreen from './component/Auth/SignIn';
 import MenuDrawer from './component/Main/Drawer';
 
 StatusBar.setHidden(true);

@@ -7,7 +7,7 @@ import OdersHistory from '../Menu/OdersHistory';
 //import ChangeInfo from '../Menu/ChangeInfo';
 import account from '../../assets/Others/account.png';
 import TabNavigator from './TabNavigator';
-import SignIn from '../Auth/SignIn';
+import Auth from '../Auth/Auth';
 
 class CustomDrawerContent extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class CustomDrawerContent extends Component {
       <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={btnStyle}
-          onPress={() => this.props.navigation.navigate('Login')}
+          onPress={() => this.props.navigation.navigate('Auth')}
         >
           <Text style={btnText}>Sign in</Text>
         </TouchableOpacity>
@@ -49,12 +49,13 @@ class CustomDrawerContent extends Component {
 }
 
 const Drawer = createDrawerNavigator();
+
 // eslint-disable-next-line react/no-multi-comp
 export default class MenuDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogedIn: true,
+      isLogedIn: false,
     };
   }
 
@@ -65,7 +66,7 @@ export default class MenuDrawer extends Component {
     );
 
     const logedOut = (
-      <Drawer.Screen name="Login" component={SignIn} />
+      <Drawer.Screen name="Auth" component={Auth} />
     );
     const mainJSX = this.state.isLogedIn ? logedIn : logedOut;
 
