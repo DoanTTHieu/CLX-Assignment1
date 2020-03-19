@@ -40,12 +40,12 @@ export default class ItemsScreen extends React.Component {
 
     return (
       <View style={{ flex: 1, paddingTop: 0, backgroundColor: '#dbdbd8' }}>
-          <SpecialItems />
-          <FlatList
-            data={this.state.dataSource}
-            renderItem={({ item }) => <Item name={item.name} image={item.image} />}
-          />
-          {/* </FlatList> */}
+        <SpecialItems />
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({ item }) => <Item name={item.name} image={item.image} />}
+        />
+        {/* </FlatList> */}
       </View>
     );
   }
@@ -54,18 +54,18 @@ export default class ItemsScreen extends React.Component {
 function Item({ name, image }) {
   const { imageStyle } = styles;
   return (
-        <View style={styles.item}>
-          <Image source={{ uri: image }} style={imageStyle} />
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={styles.name}>{name}</Text>
-          </View>
-        </View>
+    <View style={styles.item}>
+      <Image source={{ uri: image }} style={imageStyle} />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.name}>{name}</Text>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-          container: {
-          flex: 1,
+  container: {
+    flex: 1,
     //marginTop: Constants.statusBarHeight,
   },
   item: {
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
   },
   name: {
-          fontSize: 32,
+    fontSize: 32,
     fontFamily: 'Avenir',
   },
   imageStyle: {
-          width: 150,
+    width: 150,
     height: 150
   }
 });
