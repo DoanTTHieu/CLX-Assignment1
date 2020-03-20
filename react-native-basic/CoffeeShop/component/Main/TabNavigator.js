@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import SettingScreen from './Setting/Setting';
+import ContactScreen from './Contact/Contact';
 import OrdersScreen from './Orders/Orders';
 import ProductsScreen from './Products/Products';
 import menu from '../../assets/Others/menu.png';
@@ -37,16 +37,16 @@ function ProductsStackScreen() {
     );
 }
 
-const SettingStack = createStackNavigator();
-function SettingStackScreen() {
+const ContactStack = createStackNavigator();
+function ContactStackScreen() {
     return (
-        <SettingStack.Navigator>
-            <SettingStack.Screen
-                name="Setting"
-                component={SettingScreen}
+        <ContactStack.Navigator>
+            <ContactStack.Screen
+                name="Contact"
+                component={ContactScreen}
                 options={{ headerShown: false }}
             />
-        </SettingStack.Navigator>
+        </ContactStack.Navigator>
     );
 }
 
@@ -75,8 +75,8 @@ export default class TabNavigator extends Component {
                     screenOptions={({ route }) => ({
                         tabBarIcon: ({ focused, color, size }) => {
                             let iconName;
-                            if (route.name === 'Setting') {
-                                iconName = focused ? 'ios-settings' : 'ios-settings';
+                            if (route.name === 'Contact') {
+                                iconName = focused ? 'md-person' : 'md-person';
                             } else if (route.name === 'Products') {
                                 iconName = focused ? 'ios-cafe' : 'ios-cafe';
                             } else if (route.name === 'Oders') {
@@ -93,7 +93,7 @@ export default class TabNavigator extends Component {
                 >
                     <Tab.Screen name="Products" component={ProductsStackScreen} />
                     <Tab.Screen name="Oders" component={OdersStackScreen} />
-                    <Tab.Screen name="Setting" component={SettingStackScreen} />
+                    <Tab.Screen name="Contact" component={ContactStackScreen} />
                 </Tab.Navigator>
             </View>
         );
