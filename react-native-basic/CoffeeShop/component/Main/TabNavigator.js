@@ -5,12 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import SettingScreen from './Setting';
-import OrdersScreen from './Orders';
-import ItemsScreen from './Items/Items';
+import SettingScreen from './Setting/Setting';
+import OrdersScreen from './Orders/Orders';
+import ProductsScreen from './Products/Products';
 import menu from '../../assets/Others/menu.png';
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const OdersStack = createStackNavigator();
 function OdersStackScreen() {
@@ -25,15 +25,15 @@ function OdersStackScreen() {
     );
 }
 
-const ItemsStack = createStackNavigator();
-function ItemsStackScreen() {
+const ProductsStack = createStackNavigator();
+function ProductsStackScreen() {
     return (
-        <ItemsStack.Navigator>
-            <ItemsStack.Screen
-                name="Items" component={ItemsScreen}
+        <ProductsStack.Navigator>
+            <ProductsStack.Screen
+                name="Products" component={ProductsScreen}
                 options={{ headerShown: false }}
             />
-        </ItemsStack.Navigator>
+        </ProductsStack.Navigator>
     );
 }
 
@@ -54,7 +54,6 @@ const Tab = createBottomTabNavigator();
 export default class TabNavigator extends Component {
     render() {
         return (
-            // <SafeAreaView style={styles.container}>
             <View style={{ flex: 1 }}>
 
                 <View style={styles.wrapper} >
@@ -63,7 +62,7 @@ export default class TabNavigator extends Component {
                     >
                         <Image
                             source={menu}
-                            style={{ width: 35, height: 35 }}
+                            style={{ width: 30, height: 30 }}
                         />
                     </TouchableOpacity>
                     <TextInput
@@ -78,7 +77,7 @@ export default class TabNavigator extends Component {
                             let iconName;
                             if (route.name === 'Setting') {
                                 iconName = focused ? 'ios-settings' : 'ios-settings';
-                            } else if (route.name === 'Items') {
+                            } else if (route.name === 'Products') {
                                 iconName = focused ? 'ios-cafe' : 'ios-cafe';
                             } else if (route.name === 'Oders') {
                                 iconName = focused ? 'ios-list-box' : 'ios-list';
@@ -92,12 +91,11 @@ export default class TabNavigator extends Component {
                         inactiveTintColor: '#203546',
                     }}
                 >
-                    <Tab.Screen name="Items" component={ItemsStackScreen} />
+                    <Tab.Screen name="Products" component={ProductsStackScreen} />
                     <Tab.Screen name="Oders" component={OdersStackScreen} />
                     <Tab.Screen name="Setting" component={SettingStackScreen} />
                 </Tab.Navigator>
             </View>
-            // </SafeAreaView >
         );
     }
 }
@@ -112,7 +110,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
       height: height / 25,
-      width: 340,
+      width: width * 0.8,
       backgroundColor: '#FFF',
       paddingLeft: 10
     },

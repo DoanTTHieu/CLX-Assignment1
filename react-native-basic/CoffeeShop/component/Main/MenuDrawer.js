@@ -55,7 +55,7 @@ export default class MenuDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogedIn: false,
+      isLogedIn: true,
     };
   }
 

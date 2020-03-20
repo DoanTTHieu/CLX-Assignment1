@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Keyboard,
-    SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback
+import { View, Text, Image, TouchableOpacity, StyleSheet, Keyboard, 
+    TextInput, KeyboardAvoidingView, TouchableWithoutFeedback
 } from 'react-native';
 import back from '../../assets/Others/back.png';
 import cup from '../../assets/Others/cup.png';
@@ -145,7 +145,6 @@ export default class Auth extends Component {
         const mainJSX = isSignIn ? SignInJSX : SignUpJSX;
 
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#d6d6d6' }}>
                 <View style={container}>
                     <View style={row1}>
                         <TouchableOpacity onPress={this.goBackToMain.bind(this)} >
@@ -178,7 +177,6 @@ export default class Auth extends Component {
                     </View>
 
                 </View>
-            </SafeAreaView>
         );
     }
 }
@@ -197,7 +195,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     titleStyle: {
-        color: '#fff',
+        color: '#f7c744',
         fontFamily: 'Avenir',
         fontSize: 30
     },
