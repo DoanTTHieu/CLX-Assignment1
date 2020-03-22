@@ -8,6 +8,11 @@ import ProductDetail from '../Products/ProductDetail';
 const Stack = createStackNavigator();
 
 export default class OdersScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
   render() {
     return (
       <Stack.Navigator initialRouteName="OdersView" >
@@ -17,6 +22,7 @@ export default class OdersScreen extends React.Component {
          component={OdersView} 
          options={{ headerShown: false }} 
          navigation={this.props.navigation} 
+         ordersArray={this.props.ordersArray}
         />
       </Stack.Navigator>
     );

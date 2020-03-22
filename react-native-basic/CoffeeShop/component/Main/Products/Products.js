@@ -10,7 +10,11 @@ export default class ProductsScreen extends React.Component {
   render() {
     return (
       <Stack.Navigator initialRouteName="ProductsView" >
-        <Stack.Screen name='ProductDetail' component={ProductDetail} />
+        <Stack.Screen 
+          name='ProductDetail' 
+          component={ProductDetail} 
+          options={{ headerShown: false }} 
+        />
         <Stack.Screen
          name='ProductsView' 
          component={ProductsView} 

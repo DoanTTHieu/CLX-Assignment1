@@ -6,21 +6,21 @@ import Item from './Item';
 export default class Items extends Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true };
+        this.state = { 
+            isLoading: true,
+        };
     }
 
     componentDidMount() {
         // eslint-disable-next-line no-undef
-        return fetch('http://192.168.64.2/WebService/Vidu1.php')
+        return fetch('http://192.168.64.2/api')
             .then((response) => response.json())
             .then((responseJson) => {
+                const { product } = responseJson;
                 this.setState({
                     isLoading: false,
-                    dataSource: responseJson,
-                },
-                    // function() {
-                    // } 
-                );
+                    dataSource: product,
+                });
             })
             .catch((error) => {
                 console.error(error);
@@ -44,7 +44,9 @@ export default class Items extends Component {
             renderItem={({ item }) =>
                 <Item 
                 category={item}
-                onPress={() => navigation.navigate('ProductDetail')} 
+                onPress={() => navigation.navigate('ProductDetail', {
+                    product: item
+                })} 
                 />}
             />
         );

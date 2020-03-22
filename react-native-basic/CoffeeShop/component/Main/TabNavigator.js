@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, TextInput, TouchableOpacity, 
     StyleSheet, Dimensions } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -12,46 +11,14 @@ import menu from '../../assets/Others/menu.png';
 
 const { height, width } = Dimensions.get('window');
 
-const OdersStack = createStackNavigator();
-function OdersStackScreen() {
-    return (
-        <OdersStack.Navigator >
-            <OdersStack.Screen
-                name="Oders"
-                component={OrdersScreen}
-                options={{ headerShown: false }}
-            />
-        </OdersStack.Navigator>
-    );
-}
-
-const ProductsStack = createStackNavigator();
-function ProductsStackScreen() {
-    return (
-        <ProductsStack.Navigator>
-            <ProductsStack.Screen
-                name="Products" component={ProductsScreen}
-                options={{ headerShown: false }}
-            />
-        </ProductsStack.Navigator>
-    );
-}
-
-const ContactStack = createStackNavigator();
-function ContactStackScreen() {
-    return (
-        <ContactStack.Navigator>
-            <ContactStack.Screen
-                name="Contact"
-                component={ContactScreen}
-                options={{ headerShown: false }}
-            />
-        </ContactStack.Navigator>
-    );
-}
-
 const Tab = createBottomTabNavigator();
 export default class TabNavigator extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            ordersArray: []
+        };
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -79,7 +46,7 @@ export default class TabNavigator extends Component {
                                 iconName = focused ? 'md-person' : 'md-person';
                             } else if (route.name === 'Products') {
                                 iconName = focused ? 'ios-cafe' : 'ios-cafe';
-                            } else if (route.name === 'Oders') {
+                            } else if (route.name === 'Orders') {
                                 iconName = focused ? 'ios-list-box' : 'ios-list';
                             }
                             // You can return any component that you like here!
@@ -91,9 +58,9 @@ export default class TabNavigator extends Component {
                         inactiveTintColor: '#203546',
                     }}
                 >
-                    <Tab.Screen name="Products" component={ProductsStackScreen} />
-                    <Tab.Screen name="Oders" component={OdersStackScreen} />
-                    <Tab.Screen name="Contact" component={ContactStackScreen} />
+                    <Tab.Screen name="Products" component={ProductsScreen} />
+                    <Tab.Screen name="Orders" component={OrdersScreen} ordersArray={this.state.ordersArray} />
+                    <Tab.Screen name="Contact" component={ContactScreen} />
                 </Tab.Navigator>
             </View>
         );

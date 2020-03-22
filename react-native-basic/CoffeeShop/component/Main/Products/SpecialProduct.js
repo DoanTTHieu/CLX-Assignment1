@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, TouchableOpacity, Text } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
-import capuchino from '../../../assets/Items/capuchino.jpg';
-import cooktail from '../../../assets/Items/cooktail.jpg';
-import miti from '../../../assets/Items/miti.jpg';
-import bacXiu from '../../../assets/Items/bacXiu.jpg';
-
 export default class SpecialItems extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        types: [],
+    };
+}
+  // eslint-disable-next-line react/sort-comp
   goToProductDetail() {
     const { navigation } = this.props;
     navigation.navigate('ProductDetail');
   }
+
+  componentDidMount() {
+    // eslint-disable-next-line no-undef
+    return fetch('http://192.168.64.2/api')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            const { type } = responseJson;
+            this.setState({
+                types: type,
+            });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+  }
+
   render() {
     const { wrapper, imageStyle } = styles;
     return (
@@ -20,31 +38,26 @@ export default class SpecialItems extends Component {
           autoplay
           autoplayDelay={3}
           autoplayLoop
-          index={2}
+          index={1}
           showPagination
           width={imageStyle.width}
           height={imageStyle.height}
         >
-          <TouchableOpacity onPress={this.goToProductDetail.bind(this)}>
-            <Image source={capuchino} style={imageStyle} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.goToProductDetail.bind(this)}>
-            <Image source={miti} style={imageStyle} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.goToProductDetail.bind(this)}>
-            <Image source={cooktail} style={imageStyle} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.goToProductDetail.bind(this)}>
-            <Image source={bacXiu} style={imageStyle} />
-          </TouchableOpacity>
+          {this.state.types.map((e) => (
+            <TouchableOpacity key={e.id}>
+              <Image source={{ uri: `http://192.168.64.2/api/images/type/${e.image}` }} style={styles.imageStyle} />
+            </TouchableOpacity>
+          ))}
         </SwiperFlatList>
 
-      </View>
+      </View >
     );
   }
 }
-
-export const { width, height } = Dimensions.get('window');
+//onPress={this.goToProductDetail.bind(this)}
+//navigation.navigate('ProductDetail')
+//this.goToProductDetail.bind(this)
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -72,38 +85,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
 });
-
-/* <TouchableOpacity onPress={this.props.navigation.navigate('ItemsView')}>
-<Image source={capuchino} style={imageStyle} />
-</TouchableOpacity>
-<TouchableOpacity onPress={this.props.navigation.navigate('ListItems')}>
-<Image source={miti} style={imageStyle} />
-</TouchableOpacity>
-<TouchableOpacity onPress={this.props.navigation.navigate('ListItems')}>
-<Image source={cooktail} style={imageStyle} />
-</TouchableOpacity>
-<TouchableOpacity onPress={this.props.navigation.navigate('ListItems')}>
-<Image source={bacXiu} style={imageStyle} />
-</TouchableOpacity>
-*/
-/* <View>
-<TouchableOpacity onPress={this.props.navigation.navigate('ProductDetail')}>
-  <Image source={capuchino} style={imageStyle} />
-</TouchableOpacity>
-</View>
-<View>
-<TouchableOpacity onPress={this.props.navigation.navigate('ProductDetail')}>
-  <Image source={miti} style={imageStyle} />
-</TouchableOpacity>
-</View>
-<View>
-<TouchableOpacity onPress={this.props.navigation.navigate('ProductDetail')}>
-  <Image source={cooktail} style={imageStyle} />
-</TouchableOpacity>
-</View>
-<View>
-<TouchableOpacity onPress={this.props.navigation.navigate('ProductDetail')}>
-  <Image source={bacXiu} style={imageStyle} />
-</TouchableOpacity>
-</View> */
-

@@ -75,8 +75,8 @@ export default class MenuDrawer extends Component {
         <Drawer.Navigator
           drawerContent={(props) => 
             <CustomDrawerContent {...props} getLoginState={this.state.isLogedIn} />}
-          initialRouteName="Home"
-          drawerStyle={{
+            initialRouteName="Home"
+            drawerStyle={{
             backgroundColor: '#f7c744',
             width: 240,
           }}
